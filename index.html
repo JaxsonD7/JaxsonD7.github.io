@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}</style>
+<title>Jaxson Driscoll</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Jaxson Driscoll: Texas A&M finance student and founder of Flowdesk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Layout: single left-aligned reading column; the Flowdesk case study opens into two columns (story + a sample time sheet). */
+:root {
+  --bg: #F7F5F5;
+  --surface: #FFFFFF;
+  --ink: #1C1517;
+  --muted: #675C5F;
+  --line: #E3DADC;
+  --accent: #7A1F2E;      /* Aggie maroon */
+  --accent-soft: #F2E5E7;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-data: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141011; --surface: #1D1819; --ink: #F1EBEC; --muted: #A99EA1;
+    --line: #342C2E; --accent: #E5919E; --accent-soft: #35222A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141011; --surface: #1D1819; --ink: #F1EBEC; --muted: #A99EA1;
+  --line: #342C2E; --accent: #E5919E; --accent-soft: #35222A; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding-block: 3.5rem 4rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  gap: 4.5rem;
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.eyebrow {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Intro */
+.intro { display: grid; gap: 1.25rem; max-width: 46rem; }
+.intro h1 { font-size: clamp(2.6rem, 7vw, 4.5rem); font-weight: 700; letter-spacing: -0.02em; }
+.intro .lede { font-size: 1.25rem; line-height: 1.5; color: var(--ink); }
+.intro .lede strong { font-weight: 600; color: var(--accent); }
+.contact { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; align-items: center; font-family: var(--font-data); font-size: 0.875rem; }
+.contact .email { color: var(--ink); user-select: all; }
+.copy {
+  font: inherit; font-size: 0.75rem; cursor: pointer;
+  background: var(--accent-soft); color: var(--accent);
+  border: 0; border-radius: 999px; padding: 0.2rem 0.65rem;
+}
+
+/* Section heads */
+.section { display: grid; gap: 1.75rem; }
+.section-head { display: grid; gap: 0.4rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+.section-head h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -0.01em; }
+
+/* Flowdesk figures */
+.figures {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+}
+.figure { padding: 1.1rem 1.25rem; display: grid; gap: 0.2rem; }
+.figure + .figure { border-left: 1px solid var(--line); }
+.figure b { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.figure span { font-size: 0.9rem; color: var(--muted); line-height: 1.35; }
+
+.case { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+.story { display: grid; gap: 1.6rem; }
+.story h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.35rem; }
+.story p { max-width: 38rem; }
+
+/* Sample time sheet */
+.sheet {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + 1.5rem);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 1.25rem; display: grid; gap: 1rem;
+}
+.sheet-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.sheet-head h3 { font-size: 1rem; font-weight: 500; }
+.rows { display: grid; gap: 0.7rem; margin: 0; padding: 0; list-style: none; }
+.row { display: grid; gap: 0.3rem; }
+.row-label { display: flex; justify-content: space-between; gap: 0.75rem; font-size: 0.9rem; }
+.row-label span:last-child { font-family: var(--font-data); font-variant-numeric: tabular-nums; color: var(--muted); }
+.track { height: 10px; background: var(--accent-soft); border-radius: 5px; overflow: hidden; }
+.bar { height: 100%; background: var(--accent); border-radius: 5px; transform-origin: left; animation: grow 700ms cubic-bezier(.2,.7,.2,1) both; }
+@keyframes grow { from { transform: scaleX(0.15); } to { transform: scaleX(1); } }
+.sheet-foot {
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  border-top: 1px dashed var(--line); padding-top: 0.75rem;
+  font-family: var(--font-data); font-size: 0.8rem; color: var(--muted);
+}
+.sheet-foot b { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+/* Projects */
+.projects { display: grid; margin: 0; padding: 0; list-style: none; }
+.project {
+  display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 0.5rem 2rem;
+  padding: 1.25rem 0; border-bottom: 1px solid var(--line);
+}
+.project:first-child { padding-top: 0; }
+.project h3 { font-size: 1.15rem; font-weight: 500; }
+.project .body { display: grid; gap: 0.6rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+.chips li {
+  font-family: var(--font-data); font-size: 0.72rem; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 4px; padding: 0.1rem 0.45rem;
+}
+
+/* Background */
+.timeline { display: grid; margin: 0; padding: 0; list-style: none; }
+.timeline li {
+  display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 0.25rem 2rem;
+  padding: 0.9rem 0; border-bottom: 1px solid var(--line);
+}
+.timeline time { font-family: var(--font-data); font-size: 0.82rem; color: var(--muted); padding-top: 0.2rem; font-variant-numeric: tabular-nums; }
+.timeline b { font-weight: 600; }
+.timeline p { color: var(--muted); font-size: 0.98rem; }
+
+footer { display: grid; gap: 0.75rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+footer p { color: var(--muted); }
+
+@media (max-width: 760px) {
+  .wrap { padding-block: 2.25rem 3rem; gap: 3.25rem; }
+  .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .figure:nth-child(3) { border-left: 0; }
+  .figure:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .case { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .sheet { position: static; }
+  .project, .timeline li { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .bar { animation: none; } }
+</style>
+
+<main class="wrap">
+  <header class="intro">
+    <p class="eyebrow">Texas A&amp;M · Mays Business School · BBA Finance, May 2028</p>
+    <h1>Jaxson Driscoll</h1>
+    <p class="lede">I'm a finance student who builds software for finance teams. My product, Flowdesk, is in <strong>paid use by five financial advisory teams</strong>, and I build Python tools for deal sourcing and investment research.</p>
+    <div class="contact">
+      <a href="https://www.linkedin.com/in/jaxson-driscoll" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="email" id="email">jaxsondriscoll@icloud.com</span>
+      <button class="copy" id="copy-email" type="button">Copy email</button>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="flowdesk">
+    <div class="section-head">
+      <p class="eyebrow">Case study · Founder · June 2026 to present</p>
+      <h2 id="flowdesk">Flowdesk</h2>
+    </div>
+
+    <div class="figures">
+      <div class="figure"><b>5</b><span>paying advisory teams</span></div>
+      <div class="figure"><b>~40</b><span>active users each week</span></div>
+      <div class="figure"><b>0</b><span>teams lost since launch</span></div>
+      <div class="figure"><b>1 wk</b><span>to build the first version</span></div>
+    </div>
+
+    <div class="case">
+      <div class="story">
+        <div>
+          <h3>The problem</h3>
+          <p>On a financial advisory team at a national financial services firm, the partner's assistant, called the first chair, does the work that keeps the practice running. Most partners became partners without ever doing that job, so they often can't see where a first chair's day goes or why some tasks take as long as they do.</p>
+        </div>
+        <div>
+          <h3>Built with the people who use it</h3>
+          <p>I built Flowdesk with the first chairs. It tracks task ownership, deadlines and time, and gives each first chair a record of their hours by task that they can show their partner. Their feedback changed most of the interface and the way data is entered.</p>
+        </div>
+        <div>
+          <h3>A view for partners</h3>
+          <p>Date-range PDF reports let partners see their team's hours by task. Partners say it helps them understand work they never did themselves, and it lets them ask why a specific task took as long as it did.</p>
+        </div>
+        <div>
+          <h3>The constraint</h3>
+          <p>Flowdesk handles private client information, so every user gets a separate workspace, passwords are hashed, and each request checks the user's account and role before any data is returned.</p>
+        </div>
+        <div>
+          <h3>Where it stands</h3>
+          <p>I ran it with one team for two months. Their referrals brought in the next four, and every team that started is still using it. Logging time doesn't save first chairs time. What it changes is the conversation: workload discussions now start from a shared record. I built it with OpenAI Codex, and one volunteer contributor now helps me improve it.</p>
+        </div>
+      </div>
+
+      <aside class="sheet" aria-labelledby="sheet-title">
+        <div class="sheet-head">
+          <h3 id="sheet-title">A first chair's week, by task</h3>
+          <span class="eyebrow">Sample data</span>
+        </div>
+        <ul class="rows" id="rows"></ul>
+        <div class="sheet-foot">
+          <span>Week total <b id="total"></b></span>
+          <span>Illustration of a partner report</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="projects">
+    <div class="section-head">
+      <p class="eyebrow">Finance and technology</p>
+      <h2 id="projects">Projects</h2>
+    </div>
+    <ul class="projects">
+      <li class="project">
+        <h3>Deal Sourcing Bot</h3>
+        <div class="body">
+          <p>Finds acquisition targets for micro private equity and independent sponsors. It pulls SEC EDGAR Form 15 and 8-K filings and local news feeds, scores each signal, and sends a daily digest of the strongest leads. From July to November 2026 it collected 1,068 records and consolidated them into 860 unique ones.</p>
+          <ul class="chips"><li>Python</li><li>DuckDB</li><li>SEC EDGAR</li><li>RSS</li><li>Signal scoring</li></ul>
+        </div>
+      </li>
+      <li class="project">
+        <h3>Dillard's Decline Tracker</h3>
+        <div class="body">
+          <p>An alternative-data model that combines store-locator data, job postings, e-commerce markdown depth and Google Trends into one composite z-score, backtested against the comparable-sales figures Dillard's reports each quarter.</p>
+          <ul class="chips"><li>Alternative data</li><li>Z-score</li><li>SEC filings</li><li>Backtesting</li></ul>
+        </div>
+      </li>
+      <li class="project">
+        <h3>Congressional Trading Scanner</h3>
+        <div class="body">
+          <p>Tests whether copying congressional stock trades beats the market. Across 4,454 House disclosures and 24 combinations of entry delay and holding period, the disclosed buys underperformed SPY: by 1.4 percentage points on average over 90 days, across 1,671 trades. The answer was no edge, and the scanner also measures how late members report (median 30 days).</p>
+          <ul class="chips"><li>Python</li><li>Quiver Quantitative</li><li>vectorbt</li></ul>
+        </div>
+      </li>
+      <li class="project">
+        <h3>Global Finance Research Bot</h3>
+        <div class="body">
+          <p>A research pipeline covering 118 symbols and 14,875 stored price observations, with moving-average and momentum signals and a paper-trading dashboard. It runs on an Oracle Cloud virtual machine, so time-sensitive jobs run on schedule without my laptop.</p>
+          <ul class="chips"><li>alpaca-py</li><li>yfinance</li><li>backtrader</li><li>quantstats</li><li>DuckDB</li><li>Oracle Cloud</li></ul>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="background">
+    <div class="section-head">
+      <p class="eyebrow">Experience and leadership</p>
+      <h2 id="background">Background</h2>
+    </div>
+    <ul class="timeline">
+      <li>
+        <time>Sep 2026 – now</time>
+        <div><b>Maroon Fund, Maroon Investment Club</b>
+          <p>Analyst training class for the ~$72,000 student-run fund, learning equity research and how to build an investment thesis.</p></div>
+      </li>
+      <li>
+        <time>Jun – Jul 2026</time>
+        <div><b>Nokomis Capital</b>, Investment Intern
+          <p>Supported the investment team through earnings calls, shareholder meetings and analyst pitch reviews.</p></div>
+      </li>
+      <li>
+        <time>May – Aug 2025</time>
+        <div><b>Transition Capital Partners</b>, Private Equity Intern
+          <p>Screened 200+ business listings and flagged 40+ acquisition targets, 2 of which went to partner review. Made 5,000+ CRM updates so the firm's email campaigns reached the right contacts.</p></div>
+      </li>
+      <li>
+        <time>Apr 2025 – now</time>
+        <div><b>FAITHS</b>, Founding Staff Member
+          <p>Manage a $60,000+ budget and oversee 30 upperclassmen mentors.</p></div>
+      </li>
+      <li>
+        <time>Ongoing</time>
+        <div><b>Texas A&amp;M Corps of Cadets</b>, Company E-1
+          <p>Also founded Run With Christ, a volunteer Saturday running group, and earned Eagle Scout.</p></div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="eyebrow">Get in touch</p>
+    <p>I'm looking for a summer internship in finance or fintech. The fastest way to reach me is <a href="https://www.linkedin.com/in/jaxson-driscoll" target="_blank" rel="noopener">LinkedIn</a> or email at jaxsondriscoll@icloud.com.</p>
+  </footer>
+</main>
+
+<script>
+// Sample week for the illustration only; not real client data.
+const week = [
+  ["Client meeting prep", 11],
+  ["Case paperwork", 9.5],
+  ["Scheduling and calendar", 7],
+  ["Follow-up calls and email", 6.5],
+  ["CRM updates", 4],
+];
+const max = 12;
+const rows = document.getElementById("rows");
+week.forEach(([task, hours], i) => {
+  const li = document.createElement("li");
+  li.className = "row";
+  li.innerHTML = `<div class="row-label"><span></span><span>${hours.toFixed(1)} h</span></div>
+    <div class="track"><div class="bar" style="width:${(hours / max) * 100}%;animation-delay:${i * 70}ms"></div></div>`;
+  li.querySelector("span").textContent = task;
+  rows.appendChild(li);
+});
+document.getElementById("total").textContent =
+  week.reduce((s, [, h]) => s + h, 0).toFixed(1) + " h";
+
+const btn = document.getElementById("copy-email");
+btn.addEventListener("click", () => {
+  const text = document.getElementById("email").textContent;
+  const done = () => { btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy email"), 1600); };
+  const fallback = () => {
+    const r = document.createRange();
+    r.selectNodeContents(document.getElementById("email"));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    btn.textContent = "Selected, press Ctrl+C";
+  };
+  try {
+    navigator.clipboard.writeText(text).then(done, fallback);
+  } catch (e) { fallback(); }
+});
+</script>
+
+</html>
